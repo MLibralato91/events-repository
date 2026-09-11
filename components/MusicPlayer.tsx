@@ -24,7 +24,7 @@ export default function MusicPlayer({ src }: { src: string }) {
   }
 
   return (
-    <>
+    <div className="flex flex-col items-center gap-3">
       <audio ref={audioRef} src={src} loop onError={() => setUnavailable(true)} />
       <button
         type="button"
@@ -32,12 +32,19 @@ export default function MusicPlayer({ src }: { src: string }) {
         disabled={unavailable}
         aria-label={playing ? "Metti in pausa la musica" : "Riproduci musica"}
         title={unavailable ? `Aggiungi il file audio in public${src}` : undefined}
-        className="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-ink text-paper-card shadow-lg flex items-center justify-center hover:bg-ink-soft transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+        className="w-14 h-14 rounded-full bg-ink text-paper-card shadow-md flex items-center justify-center hover:bg-ink-soft transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
       >
-        <span className={playing ? "animate-pulse" : ""} aria-hidden>
+        <span className={playing ? "animate-pulse text-xl" : "text-xl"} aria-hidden>
           {playing ? "⏸" : "♪"}
         </span>
       </button>
-    </>
+      <p className="stub-label">
+        {unavailable
+          ? "Musica non disponibile"
+          : playing
+          ? "In riproduzione"
+          : "Ascolta la playlist"}
+      </p>
+    </div>
   );
 }

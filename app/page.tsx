@@ -2,6 +2,7 @@ import RsvpForm from "@/components/RsvpForm";
 import EventCalendar from "@/components/EventCalendar";
 import HeroPhoto from "@/components/HeroPhoto";
 import MusicPlayer from "@/components/MusicPlayer";
+import Countdown from "@/components/Countdown";
 
 // ─── Dati evento — modifica qui ────────────────────────────────────────────
 const EVENT = {
@@ -25,6 +26,10 @@ const dateLabel = EVENT.date.toLocaleDateString("it-IT", {
   month: "long",
   year: "numeric",
 });
+
+const [eventHour, eventMinute] = EVENT.time.split(":").map(Number);
+const eventDateTime = new Date(EVENT.date);
+eventDateTime.setHours(eventHour, eventMinute, 0, 0);
 
 // ─── Card in stile boarding pass, con "fori" tratteggiati ─────────────────
 function TicketCard({
@@ -74,10 +79,24 @@ export default function Home() {
           </div>
         </TicketCard>
 
+        {/* ── Countdown ── */}
+        <TicketCard className="mb-6 p-6 sm:p-8 animate-fade-up" style={{ animationDelay: "0.05s" }}>
+          <p className="stub-label text-center mb-4">Manca ancora</p>
+          <Countdown target={eventDateTime} />
+        </TicketCard>
+
         {/* ── Calendario ── */}
         <TicketCard className="mb-6 p-6 sm:p-8 animate-fade-up" style={{ animationDelay: "0.1s" }}>
           <p className="stub-label text-center mb-4">Segna la data</p>
           <EventCalendar date={EVENT.date} />
+        </TicketCard>
+
+        {/* ── Player musicale ── */}
+        <TicketCard className="mb-6 p-6 sm:p-8 animate-fade-up" style={{ animationDelay: "0.12s" }}>
+          <p className="stub-label text-center mb-4">Colonna sonora</p>
+          <div className="flex justify-center">
+            <MusicPlayer src={EVENT.musicSrc} />
+          </div>
         </TicketCard>
 
         {/* ── Luogo ── */}
@@ -129,8 +148,6 @@ export default function Home() {
         </footer>
 
       </div>
-
-      <MusicPlayer src={EVENT.musicSrc} />
     </main>
   );
 }
