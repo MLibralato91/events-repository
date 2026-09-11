@@ -23,15 +23,13 @@ cp .env.local.example .env.local
 ### 4. Verifica il dominio su Resend
 1. Apri [resend.com](https://resend.com) → **Domains**
 2. Aggiungi il tuo dominio e configura i record DNS su Netsons
-3. Aggiorna il campo `from` in `lib/resend.ts` con il tuo dominio
+3. Aggiorna `resendFrom` in `lib/event.ts` con il tuo dominio
 
 ---
 
 ## Personalizzazione evento
 
-Modifica le variabili `EVENT` in:
-- `app/page.tsx` — nome, data, luogo, dress code
-- `lib/resend.ts` — stesse info per le email + indirizzo `from`
+Tutti i dati (nome, età, data/ora, fuso orario, luogo, dress code, deadline RSVP, mittente email) sono centralizzati in `lib/event.ts` — è l'unica cosa da modificare. Viene letto da `app/page.tsx`, `lib/resend.ts` e `app/api/calendar/route.ts` (l'export .ics), così restano sempre allineati.
 
 ## Asset media (foto e musica)
 
@@ -53,16 +51,18 @@ La home carica due file opzionali dalla cartella `public/` (non versionati, li a
 
 ```
 ├── app/
-│   ├── page.tsx              # Home: hero + form RSVP
-│   ├── conferma/page.tsx     # Pagina post-submit
-│   ├── api/rsvp/route.ts    # API: salva + invia email
+│   ├── page.tsx               # Home: hero + form RSVP
+│   ├── conferma/page.tsx      # Pagina post-submit
+│   ├── api/rsvp/route.ts     # API: salva + invia email
+│   ├── api/calendar/route.ts # API: genera il file .ics dell'evento
 │   └── globals.css
 ├── components/
-│   └── RsvpForm.tsx          # Form con validazione
+│   └── RsvpForm.tsx           # Form con validazione
 ├── lib/
-│   ├── supabase.ts           # Client + funzione insert
-│   └── resend.ts             # Template email + invio
-└── supabase-schema.sql       # Schema DB da eseguire su Supabase
+│   ├── event.ts               # Dati evento (unica fonte di verità)
+│   ├── supabase.ts            # Client + funzione insert
+│   └── resend.ts              # Template email + invio
+└── supabase-schema.sql        # Schema DB da eseguire su Supabase
 ```
 
 ## Vedere le RSVP

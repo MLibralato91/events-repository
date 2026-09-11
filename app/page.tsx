@@ -3,33 +3,16 @@ import EventCalendar from "@/components/EventCalendar";
 import HeroPhoto from "@/components/HeroPhoto";
 import MusicPlayer from "@/components/MusicPlayer";
 import Countdown from "@/components/Countdown";
+import {
+  EVENT,
+  eventDateLabel,
+  eventStartUtc,
+  mapsUrl,
+  googleCalendarUrl,
+} from "@/lib/event";
 
-// ─── Dati evento — modifica qui ────────────────────────────────────────────
-const EVENT = {
-  name: "Matteo",
-  age: 30,
-  date: new Date(2026, 9, 23), // 23 Ottobre 2026 — mese 0-indicizzato
-  time: "20:00",
-  venue: "Nome del Locale",
-  address: "Via Esempio 1, Milano",
-  deadline: "16 ottobre",
-  coverCharge: null as string | null, // es. "€30 a persona" oppure null
-  dressCode: "Smart casual",
-  contactEmail: "tua@email.it",
-  heroImage: "/hero.jpg",
-  musicSrc: "/music.mp3",
-};
-
-const dateLabel = EVENT.date.toLocaleDateString("it-IT", {
-  weekday: "long",
-  day: "numeric",
-  month: "long",
-  year: "numeric",
-});
-
-const [eventHour, eventMinute] = EVENT.time.split(":").map(Number);
-const eventDateTime = new Date(EVENT.date);
-eventDateTime.setHours(eventHour, eventMinute, 0, 0);
+const dateLabel = eventDateLabel();
+const eventDateTime = eventStartUtc();
 
 // ─── Card in stile boarding pass, con "fori" tratteggiati ─────────────────
 function TicketCard({
@@ -89,6 +72,25 @@ export default function Home() {
         <TicketCard className="mb-6 p-6 sm:p-8 animate-fade-up" style={{ animationDelay: "0.1s" }}>
           <p className="stub-label text-center mb-4">Segna la data</p>
           <EventCalendar date={EVENT.date} />
+
+          <TicketDivider />
+
+          <div className="flex flex-col sm:flex-row gap-3">
+            <a
+              href={googleCalendarUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 text-center py-3 px-4 rounded-lg border border-ink/15 text-sm font-medium text-ink-soft hover:border-ink/40 hover:text-ink transition-colors"
+            >
+              📅 Google Calendar
+            </a>
+            <a
+              href="/api/calendar"
+              className="flex-1 text-center py-3 px-4 rounded-lg border border-ink/15 text-sm font-medium text-ink-soft hover:border-ink/40 hover:text-ink transition-colors"
+            >
+              📥 Apple / Outlook (.ics)
+            </a>
+          </div>
         </TicketCard>
 
         {/* ── Player musicale ── */}
@@ -103,7 +105,18 @@ export default function Home() {
         <TicketCard className="mb-6 p-6 sm:p-8 animate-fade-up" style={{ animationDelay: "0.15s" }}>
           <p className="stub-label text-center mb-2">Dove</p>
           <p className="font-serif text-xl text-center mb-1">{EVENT.venue}</p>
-          <p className="text-sm text-ink-soft text-center">{EVENT.address}</p>
+          <p className="text-sm text-ink-soft text-center mb-4">{EVENT.address}</p>
+
+          <div className="flex justify-center">
+            <a
+              href={mapsUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block text-center py-3 px-6 rounded-lg border border-ink/15 text-sm font-medium text-ink-soft hover:border-ink/40 hover:text-ink transition-colors"
+            >
+              🧭 Come arrivare
+            </a>
+          </div>
 
           {EVENT.coverCharge && (
             <>

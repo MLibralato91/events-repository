@@ -1,16 +1,12 @@
 import { Resend } from "resend";
+import { EVENT as EVENT_BASE, eventDateLabel } from "./event";
 
 const resend = new Resend(process.env.RESEND_API_KEY!);
 
-// ─── Dati evento (mantieni in sync con app/page.tsx) ──────────────────────
 const EVENT = {
-  name: "Matteo",
-  age: 30,
-  date: "Venerdì 23 Ottobre 2026",
-  time: "20:00",
-  venue: "Nome del Locale",
-  address: "Via Esempio 1, Milano",
-  from: "Festa di Matteo <noreply@tuodominio.it>", // Modifica con il tuo dominio verificato su Resend
+  ...EVENT_BASE,
+  date: eventDateLabel(),
+  from: EVENT_BASE.resendFrom,
 };
 
 // ─── Template email conferma ───────────────────────────────────────────────
