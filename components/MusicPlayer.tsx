@@ -26,24 +26,34 @@ export default function MusicPlayer({ src }: { src: string }) {
   return (
     <div className="flex flex-col items-center gap-3">
       <audio ref={audioRef} src={src} loop onError={() => setUnavailable(true)} />
-      <button
-        type="button"
-        onClick={toggle}
-        disabled={unavailable}
-        aria-label={playing ? "Metti in pausa la musica" : "Riproduci musica"}
-        title={unavailable ? `Aggiungi il file audio in public${src}` : undefined}
-        className="w-14 h-14 rounded-full bg-ink text-paper-card shadow-md flex items-center justify-center hover:bg-ink-soft transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-      >
-        <span className={playing ? "animate-pulse text-xl" : "text-xl"} aria-hidden>
-          {playing ? "⏸" : "♪"}
-        </span>
-      </button>
-      <p className="stub-label">
+      <div className="relative w-14 h-14">
+        {!playing && !unavailable && (
+          <>
+            <span className="absolute inset-0 rounded-full bg-accent animate-ping opacity-75" aria-hidden />
+            <span className="absolute -inset-2 rounded-full bg-accent/20 animate-pulse" aria-hidden />
+          </>
+        )}
+        <button
+          type="button"
+          onClick={toggle}
+          disabled={unavailable}
+          aria-label={playing ? "Silenzia la musica" : "Riproduci musica"}
+          title={unavailable ? `Aggiungi il file audio in public${src}` : undefined}
+          className={`relative w-14 h-14 rounded-full shadow-md flex items-center justify-center transition-colors disabled:opacity-30 disabled:cursor-not-allowed ${
+            playing ? "bg-ink text-paper-card hover:bg-ink-soft" : "bg-accent text-paper-card hover:bg-accent/90"
+          }`}
+        >
+          <span className="text-xl" aria-hidden>
+            {playing ? "⏸" : "♪"}
+          </span>
+        </button>
+      </div>
+      <p className="stub-label font-semibold text-center whitespace-nowrap">
         {unavailable
           ? "Musica non disponibile"
           : playing
-          ? "In riproduzione"
-          : "Ascolta la musica"}
+          ? "Questo è solo un assaggio"
+          : "Non sei pronto per l'evento dell'anno"}
       </p>
     </div>
   );

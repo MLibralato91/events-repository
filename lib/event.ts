@@ -2,7 +2,7 @@
 // app/api/calendar/route.ts ──────────────────────────────────────────────
 
 export const EVENT = {
-  name: "Matteo",
+  name: "Vanzoo",
   age: 30,
   date: new Date(2026, 9, 23), // 23 Ottobre 2026 — mese 0-indicizzato
   time: "20:00",
@@ -14,9 +14,10 @@ export const EVENT = {
   coverCharge: null as string | null, // es. "€30 a persona" oppure null
   dressCode: "Smart casual",
   contactEmail: "tua@email.it",
-  heroImage: "/hero.jpg",
+  heroImage: "/hero.png",
+  funImage: "/offre-lui.jpg",
   musicSrc: "/music.mp3",
-  resendFrom: "Festa di Matteo <noreply@mail.eventogo.it>",
+  resendFrom: "Festa di Vanzoo <noreply@mail.eventogo.it>",
 };
 
 export function eventDateLabel() {

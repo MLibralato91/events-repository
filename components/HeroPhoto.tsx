@@ -2,7 +2,17 @@
 
 import { useEffect, useState } from "react";
 
-export default function HeroPhoto({ src, alt }: { src: string; alt: string }) {
+export default function HeroPhoto({
+  src,
+  alt,
+  heightClassName = "h-72 sm:h-80",
+  fit = "cover",
+}: {
+  src: string;
+  alt: string;
+  heightClassName?: string;
+  fit?: "cover" | "contain";
+}) {
   const [mounted, setMounted] = useState(false);
   const [errored, setErrored] = useState(false);
 
@@ -12,12 +22,12 @@ export default function HeroPhoto({ src, alt }: { src: string; alt: string }) {
   useEffect(() => setMounted(true), []);
 
   if (!mounted) {
-    return <div className="w-full h-72 sm:h-80 bg-ink/5" />;
+    return <div className={`w-full ${heightClassName} bg-ink/5`} />;
   }
 
   if (errored) {
     return (
-      <div className="w-full h-72 sm:h-80 flex items-center justify-center bg-ink/5 border-b border-ink/10 px-6 text-center">
+      <div className={`w-full ${heightClassName} flex items-center justify-center bg-ink/5 border-b border-ink/10 px-6 text-center`}>
         <p className="stub-label">
           Aggiungi la foto in <span className="text-ink normal-case">public{src}</span>
         </p>
@@ -31,7 +41,7 @@ export default function HeroPhoto({ src, alt }: { src: string; alt: string }) {
       src={src}
       alt={alt}
       onError={() => setErrored(true)}
-      className="w-full h-72 sm:h-80 object-cover"
+      className={`w-full ${heightClassName} bg-ink/5 ${fit === "contain" ? "object-contain" : "object-cover"}`}
     />
   );
 }

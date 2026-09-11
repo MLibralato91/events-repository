@@ -14,11 +14,11 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "30 Anni di Matteo — RSVP",
-  description: "Conferma la tua presenza alla festa di 30 anni di Matteo",
+  title: "30 Anni di Vanzoo — RSVP",
+  description: "Conferma la tua presenza alla festa di 30 anni di Vanzoo",
   openGraph: {
-    title: "30 Anni di Matteo 🥂",
-    description: "Sei invitato! Conferma la tua presenza.",
+    title: "30 Anni di Vanzoo 🥂",
+    description: "Non puoi mancare! Conferma la tua presenza.",
     type: "website",
   },
 };

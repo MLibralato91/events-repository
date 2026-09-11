@@ -116,7 +116,7 @@ input[type="checkbox"]:checked {
 
   /* Etichette in stile boarding pass (maiuscolo, spaziato) */
   .stub-label {
-    font-size: 0.65rem;
+    font-size: 0.75rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: rgba(27, 42, 74, 0.55);
