@@ -6,13 +6,13 @@ import Countdown from "@/components/Countdown";
 
 // ─── Dati evento — modifica qui ────────────────────────────────────────────
 const EVENT = {
-  name: "Marco",
+  name: "Matteo",
   age: 30,
-  date: new Date(2025, 10, 15), // 15 Novembre 2025 — mese 0-indicizzato
+  date: new Date(2026, 9, 23), // 23 Ottobre 2026 — mese 0-indicizzato
   time: "20:00",
   venue: "Nome del Locale",
   address: "Via Esempio 1, Milano",
-  deadline: "31 ottobre",
+  deadline: "16 ottobre",
   coverCharge: null as string | null, // es. "€30 a persona" oppure null
   dressCode: "Smart casual",
   contactEmail: "tua@email.it",
@@ -144,6 +144,10 @@ export default function Home() {
             className="text-ink underline underline-offset-2 hover:text-accent transition-colors"
           >
             {EVENT.contactEmail}
+          </a>{" "}
+          {/* Accesso admin nascosto: stesso colore dello sfondo, invisibile a vista */}
+          <a href="/admin" className="text-paper hover:text-paper" aria-label="Area riservata">
+            ·
           </a>
         </footer>
 

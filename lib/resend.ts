@@ -4,13 +4,13 @@ const resend = new Resend(process.env.RESEND_API_KEY!);
 
 // ─── Dati evento (mantieni in sync con app/page.tsx) ──────────────────────
 const EVENT = {
-  name: "Marco",
+  name: "Matteo",
   age: 30,
-  date: "Sabato 15 Novembre 2025",
+  date: "Venerdì 23 Ottobre 2026",
   time: "20:00",
   venue: "Nome del Locale",
   address: "Via Esempio 1, Milano",
-  from: "Festa di Marco <noreply@tuodominio.it>", // Modifica con il tuo dominio verificato su Resend
+  from: "Festa di Matteo <noreply@tuodominio.it>", // Modifica con il tuo dominio verificato su Resend
 };
 
 // ─── Template email conferma ───────────────────────────────────────────────
