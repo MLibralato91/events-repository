@@ -31,12 +31,14 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <main className="min-h-screen flex items-center justify-center px-4">
-      <div className="glass-card rounded-2xl p-8 w-full max-w-sm">
-        <h1 className="font-serif text-2xl text-gold-shimmer text-center mb-1">
-          Area Admin
-        </h1>
-        <p className="text-sm text-[#888] text-center mb-6">
+    <main className="min-h-screen bg-paper text-ink flex items-center justify-center px-4">
+      <div className="ticket-card rounded-[28px] p-8 w-full max-w-sm">
+        <div className="flex justify-center mb-4">
+          <span className="text-2xl rotate-45 inline-block text-accent">✈</span>
+        </div>
+
+        <h1 className="font-serif text-2xl text-center mb-1">Area Admin</h1>
+        <p className="text-sm text-ink-soft text-center mb-6">
           Inserisci la password per vedere le RSVP.
         </p>
 
@@ -47,17 +49,17 @@ export default function AdminLoginPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
-            className="w-full rounded-lg bg-black/40 border border-[#2A2A2A] px-4 py-3 text-sm text-[#F5F0E8] placeholder:text-[#666] focus:outline-none focus:border-gold/50"
+            className="w-full rounded-lg bg-white border border-ink/15 px-4 py-3 text-sm text-ink placeholder:text-ink-light/50 focus:outline-none focus:ring-2 focus:ring-ink/20 focus:border-ink/50"
           />
 
           {error && (
-            <p className="text-sm text-red-400 text-center">{error}</p>
+            <p className="text-sm text-red-500 text-center">{error}</p>
           )}
 
           <button
             type="submit"
             disabled={loading || !password}
-            className="w-full rounded-lg bg-gold text-black font-semibold py-3 text-sm tracking-wide hover:bg-gold-light transition-colors disabled:opacity-40"
+            className="w-full rounded-lg bg-ink text-paper-card font-semibold py-3 text-sm tracking-wide hover:bg-ink-soft transition-colors disabled:opacity-40"
           >
             {loading ? "Verifica..." : "Entra"}
           </button>

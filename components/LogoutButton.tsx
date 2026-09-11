@@ -14,7 +14,7 @@ export default function LogoutButton() {
   return (
     <button
       onClick={handleLogout}
-      className="text-xs text-[#888] hover:text-gold transition-colors uppercase tracking-wide"
+      className="text-xs text-ink-soft hover:text-accent transition-colors uppercase tracking-wide"
     >
       Esci
     </button>

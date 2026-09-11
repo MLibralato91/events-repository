@@ -16,9 +16,9 @@ async function getRsvps(): Promise<Rsvp[]> {
 
 function StatCard({ label, value }: { label: string; value: number }) {
   return (
-    <div className="glass-card rounded-xl px-4 py-3 flex-1 min-w-[120px]">
-      <p className="text-xs uppercase tracking-wide text-[#888] mb-1">{label}</p>
-      <p className="text-2xl font-serif text-gold">{value}</p>
+    <div className="ticket-card rounded-2xl px-4 py-3 flex-1 min-w-[120px]">
+      <p className="stub-label mb-1">{label}</p>
+      <p className="text-2xl font-serif text-ink">{value}</p>
     </div>
   );
 }
@@ -32,10 +32,10 @@ export default async function AdminPage() {
   const totalePersone = partecipano.length + accompagnatori;
 
   return (
-    <main className="min-h-screen px-4 py-10">
+    <main className="min-h-screen bg-paper text-ink px-4 py-10">
       <div className="max-w-5xl mx-auto">
         <div className="flex items-center justify-between mb-8">
-          <h1 className="font-serif text-3xl text-gold-shimmer">RSVP Ricevute</h1>
+          <h1 className="font-serif text-3xl">RSVP Ricevute</h1>
           <LogoutButton />
         </div>
 
@@ -47,16 +47,16 @@ export default async function AdminPage() {
           <StatCard label="Persone attese" value={totalePersone} />
         </div>
 
-        <div className="glass-card rounded-2xl overflow-hidden">
+        <div className="ticket-card rounded-2xl overflow-hidden">
           {rsvps.length === 0 ? (
-            <p className="text-center text-[#888] py-12 text-sm">
+            <p className="text-center text-ink-soft py-12 text-sm">
               Nessuna RSVP ricevuta finora.
             </p>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-[#2A2A2A] text-left text-xs uppercase tracking-wide text-gold/80">
+                  <tr className="border-b border-ink/15 text-left stub-label">
                     <th className="px-4 py-3 font-medium">Nome</th>
                     <th className="px-4 py-3 font-medium">Email</th>
                     <th className="px-4 py-3 font-medium">Partecipa</th>
@@ -69,32 +69,32 @@ export default async function AdminPage() {
                   {rsvps.map((r) => (
                     <tr
                       key={r.id}
-                      className="border-b border-[#2A2A2A]/50 last:border-0 hover:bg-white/[0.02]"
+                      className="border-b border-ink/10 last:border-0 hover:bg-ink/[0.03]"
                     >
-                      <td className="px-4 py-3 whitespace-nowrap">
+                      <td className="px-4 py-3 whitespace-nowrap text-ink">
                         {r.nome} {r.cognome}
                       </td>
-                      <td className="px-4 py-3 text-[#C5B99A]">{r.email}</td>
+                      <td className="px-4 py-3 text-ink-soft">{r.email}</td>
                       <td className="px-4 py-3">
                         <span
                           className={
                             r.partecipa
-                              ? "text-green-400"
-                              : "text-red-400/80"
+                              ? "text-green-700"
+                              : "text-red-500/80"
                           }
                         >
                           {r.partecipa ? "Sì" : "No"}
                         </span>
                       </td>
-                      <td className="px-4 py-3 text-[#C5B99A]">
+                      <td className="px-4 py-3 text-ink-soft">
                         {r.accompagnato
                           ? r.nome_accompagnatore || "Sì (nome non indicato)"
                           : "—"}
                       </td>
-                      <td className="px-4 py-3 text-[#888] max-w-[240px] truncate">
+                      <td className="px-4 py-3 text-ink-soft max-w-[240px] truncate">
                         {r.note || "—"}
                       </td>
-                      <td className="px-4 py-3 text-[#666] whitespace-nowrap">
+                      <td className="px-4 py-3 text-ink-soft/70 whitespace-nowrap">
                         {r.created_at
                           ? new Date(r.created_at).toLocaleString("it-IT")
                           : "—"}
