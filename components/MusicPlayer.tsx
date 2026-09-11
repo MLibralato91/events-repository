@@ -43,7 +43,7 @@ export default function MusicPlayer({ src }: { src: string }) {
           ? "Musica non disponibile"
           : playing
           ? "In riproduzione"
-          : "Ascolta la playlist"}
+          : "Ascolta la musica"}
       </p>
     </div>
   );

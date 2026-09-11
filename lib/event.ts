@@ -16,7 +16,7 @@ export const EVENT = {
   contactEmail: "tua@email.it",
   heroImage: "/hero.jpg",
   musicSrc: "/music.mp3",
-  resendFrom: "Festa di Matteo <noreply@tuodominio.it>", // Modifica con il tuo dominio verificato su Resend
+  resendFrom: "Festa di Matteo <noreply@mail.eventogo.it>",
 };
 
 export function eventDateLabel() {
