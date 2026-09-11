@@ -13,7 +13,7 @@ export const EVENT = {
   deadline: "16 ottobre",
   coverCharge: null as string | null, // es. "€30 a persona" oppure null
   dressCode: "Smart casual",
-  contactEmail: "tua@email.it",
+  contactEmail: "matteovanzari@yahoo.it",
   heroImage: "/hero.png",
   funImage: "/offre-lui.jpg",
   musicSrc: "/music.mp3",
