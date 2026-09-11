@@ -19,6 +19,18 @@ const config: Config = {
           card: "#141414",
           border: "#2A2A2A",
         },
+        ink: {
+          DEFAULT: "#1B2A4A",
+          soft: "#33456B",
+          light: "#5A6C8F",
+        },
+        paper: {
+          DEFAULT: "#F1ECE0",
+          card: "#FBF8F1",
+        },
+        accent: {
+          DEFAULT: "#B5654F",
+        },
       },
       fontFamily: {
         sans: ["var(--font-inter)"],

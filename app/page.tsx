@@ -1,122 +1,147 @@
 import RsvpForm from "@/components/RsvpForm";
+import EventCalendar from "@/components/EventCalendar";
 
 // ─── Dati evento — modifica qui ────────────────────────────────────────────
 const EVENT = {
-  name: "Marco",           // Nome del festeggiato
+  name: "Marco",
   age: 30,
-  date: "Sabato 15 Novembre 2025",
+  date: new Date(2025, 10, 15), // 15 Novembre 2025 — mese 0-indicizzato
   time: "20:00",
   venue: "Nome del Locale",
   address: "Via Esempio 1, Milano",
-  deadline: "31 ottobre",  // Scadenza RSVP
-  coverCharge: null,       // es. "€30 a persona" oppure null
+  deadline: "31 ottobre",
+  coverCharge: null as string | null, // es. "€30 a persona" oppure null
   dressCode: "Smart casual",
+  contactEmail: "tua@email.it",
 };
 
-// ─── Sfondo decorativo ─────────────────────────────────────────────────────
-function Orbs() {
+const dateLabel = EVENT.date.toLocaleDateString("it-IT", {
+  weekday: "long",
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+});
+
+// ─── Card in stile boarding pass, con "fori" tratteggiati ─────────────────
+function TicketCard({
+  children,
+  className = "",
+  style,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  style?: React.CSSProperties;
+}) {
   return (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0" aria-hidden>
-      <div
-        className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full opacity-10"
-        style={{
-          background: "radial-gradient(circle, #C9A84C 0%, transparent 70%)",
-        }}
-      />
-      <div
-        className="absolute -bottom-40 -right-40 w-[500px] h-[500px] rounded-full opacity-8"
-        style={{
-          background: "radial-gradient(circle, #C9A84C 0%, transparent 70%)",
-        }}
-      />
+    <div className={`ticket-card rounded-[28px] p-6 sm:p-8 ${className}`} style={style}>
+      {children}
     </div>
   );
 }
 
-// ─── Divisore dorato ───────────────────────────────────────────────────────
-function GoldDivider() {
+function TicketDivider() {
   return (
-    <div className="flex items-center gap-3 my-6">
-      <div className="flex-1 h-px bg-gradient-to-r from-transparent to-gold/40" />
-      <span className="text-gold text-xs tracking-[0.3em] uppercase">✦</span>
-      <div className="flex-1 h-px bg-gradient-to-l from-transparent to-gold/40" />
+    <div className="ticket-divider">
+      <span className="ticket-notch" />
     </div>
   );
 }
 
-// ─── Info card evento ──────────────────────────────────────────────────────
-function InfoRow({ icon, text }: { icon: string; text: string }) {
+function StubField({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex items-start gap-3 text-sm text-[#C5B99A]">
-      <span className="text-base mt-0.5 shrink-0">{icon}</span>
-      <span>{text}</span>
+    <div>
+      <p className="stub-label mb-1">{label}</p>
+      <p className="text-sm text-ink font-medium">{value}</p>
     </div>
   );
 }
 
-// ─── Pagina principale ─────────────────────────────────────────────────────
 export default function Home() {
   return (
-    <main className="relative min-h-screen flex flex-col items-center justify-start py-12 px-4">
-      <Orbs />
+    <main className="min-h-screen bg-paper text-ink flex flex-col items-center py-14 px-4">
+      <div className="w-full max-w-lg">
 
-      <div className="relative z-10 w-full max-w-lg">
-
-        {/* Header */}
-        <header className="text-center mb-8 animate-fade-in">
-          <p className="text-gold text-xs tracking-[0.4em] uppercase mb-4 font-medium">
-            Sei Invitato
-          </p>
-          <h1 className="font-serif text-5xl sm:text-6xl font-bold mb-2 text-gold-shimmer">
-            {EVENT.age} Anni
-          </h1>
-          <h2 className="font-serif text-3xl sm:text-4xl text-[#F5F0E8] italic">
-            di {EVENT.name}
-          </h2>
-        </header>
-
-        {/* Card info evento */}
-        <div className="glass-card rounded-2xl p-6 mb-6 animate-fade-up" style={{ animationDelay: "0.1s" }}>
-          <h3 className="text-xs font-semibold tracking-[0.3em] uppercase text-gold mb-4">
-            Dettagli Evento
-          </h3>
-          <div className="space-y-3">
-            <InfoRow icon="📅" text={`${EVENT.date} alle ${EVENT.time}`} />
-            <InfoRow icon="📍" text={`${EVENT.venue} — ${EVENT.address}`} />
-            {EVENT.dressCode && (
-              <InfoRow icon="👔" text={`Dress code: ${EVENT.dressCode}`} />
-            )}
-            {EVENT.coverCharge && (
-              <InfoRow icon="💳" text={`Quota: ${EVENT.coverCharge}`} />
-            )}
+        {/* ── Ticket header: invito ── */}
+        <TicketCard className="mb-6 animate-fade-in">
+          <div className="flex justify-center mb-4">
+            <span className="text-2xl rotate-45 inline-block text-accent">✈</span>
           </div>
 
-          <GoldDivider />
+          <p className="stub-label text-center mb-3">Biglietto d&rsquo;invito</p>
 
-          <p className="text-xs text-[#666] text-center">
-            Conferma entro il <span className="text-gold font-medium">{EVENT.deadline}</span>
+          <h1 className="font-serif text-5xl sm:text-6xl text-center leading-tight">
+            {EVENT.age} Anni
+          </h1>
+          <h2 className="font-serif italic text-2xl sm:text-3xl text-center text-ink-soft mt-1">
+            di {EVENT.name}
+          </h2>
+
+          <TicketDivider />
+
+          <div className="grid grid-cols-2 gap-y-4">
+            <StubField label="Data" value={dateLabel} />
+            <StubField label="Ora" value={EVENT.time} />
+            <StubField label="Luogo" value={EVENT.venue} />
+            <StubField label="Dress code" value={EVENT.dressCode} />
+          </div>
+        </TicketCard>
+
+        {/* ── Messaggio ── */}
+        <TicketCard className="mb-6 bg-ink text-paper-card animate-fade-up" style={{ animationDelay: "0.1s" }}>
+          <p className="stub-label text-paper-card/60 text-center mb-3">
+            Cari amici e parenti
           </p>
-        </div>
+          <p className="font-serif italic text-lg text-center leading-relaxed">
+            Compio {EVENT.age} anni e voglio festeggiare insieme a voi.
+            Sarebbe un onore avervi al mio fianco in questo giorno speciale.
+          </p>
+        </TicketCard>
 
-        {/* Card form RSVP */}
-        <div className="glass-card rounded-2xl p-6 animate-fade-up" style={{ animationDelay: "0.2s" }}>
-          <h3 className="text-xs font-semibold tracking-[0.3em] uppercase text-gold mb-1">
-            Conferma la Presenza
-          </h3>
-          <p className="text-sm text-[#888] mb-6">
-            Compila il form qui sotto per confermare la tua partecipazione.
+        {/* ── Calendario ── */}
+        <TicketCard className="mb-6 animate-fade-up" style={{ animationDelay: "0.15s" }}>
+          <p className="stub-label text-center mb-4">Segna la data</p>
+          <EventCalendar date={EVENT.date} />
+        </TicketCard>
+
+        {/* ── Luogo ── */}
+        <TicketCard className="mb-6 animate-fade-up" style={{ animationDelay: "0.2s" }}>
+          <p className="stub-label text-center mb-2">Dove</p>
+          <p className="font-serif text-xl text-center mb-1">{EVENT.venue}</p>
+          <p className="text-sm text-ink-soft text-center">{EVENT.address}</p>
+
+          {EVENT.coverCharge && (
+            <>
+              <TicketDivider />
+              <p className="text-sm text-center text-ink-soft">
+                Quota di partecipazione: <span className="text-ink font-medium">{EVENT.coverCharge}</span>
+              </p>
+            </>
+          )}
+
+          <TicketDivider />
+
+          <p className="stub-label text-center">
+            Conferma entro il <span className="text-ink">{EVENT.deadline}</span>
+          </p>
+        </TicketCard>
+
+        {/* ── Form RSVP ── */}
+        <TicketCard className="animate-fade-up" style={{ animationDelay: "0.25s" }}>
+          <p className="stub-label text-center mb-1">Conferma la presenza</p>
+          <p className="text-sm text-ink-soft text-center mb-6">
+            Compila il form qui sotto per farci sapere se ci sarai.
           </p>
           <RsvpForm />
-        </div>
+        </TicketCard>
 
-        {/* Footer */}
-        <footer className="text-center mt-8 text-xs text-[#444]">
+        {/* ── Footer ── */}
+        <footer className="text-center mt-8 text-xs text-ink-soft/70">
           Per qualsiasi info scrivi a{" "}
           <a
-            href={`mailto:tua@email.it`}
-            className="text-gold/60 hover:text-gold transition-colors"
+            href={`mailto:${EVENT.contactEmail}`}
+            className="text-ink underline underline-offset-2 hover:text-accent transition-colors"
           >
-            tua@email.it
+            {EVENT.contactEmail}
           </a>
         </footer>
 

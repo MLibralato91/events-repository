@@ -9,6 +9,9 @@
   --dark: #0A0A0A;
   --dark-card: #141414;
   --dark-border: #2A2A2A;
+  --ink: #1B2A4A;
+  --paper: #F1ECE0;
+  --paper-card: #FBF8F1;
 }
 
 * {
@@ -60,6 +63,60 @@ body {
 input[type="radio"]:checked,
 input[type="checkbox"]:checked {
   accent-color: var(--gold);
+}
+
+/* ─── Boarding-pass / invito style ────────────────────────────────────────── */
+/* @layer components: cede la precedenza alle utility di Tailwind (es. bg-ink
+   passato via className) che vivono nel layer "utilities", caricato dopo. */
+@layer components {
+  .ticket-card {
+    position: relative;
+    background: var(--paper-card, #FBF8F1);
+    border: 1px solid rgba(27, 42, 74, 0.16);
+  }
+
+  /* Divisore tratteggiato con "fori" di biglietto sui bordi della card */
+  .ticket-divider {
+    position: relative;
+    margin: 1.5rem -1.25rem;
+  }
+
+  .ticket-divider::before {
+    content: "";
+    position: absolute;
+    left: 1.25rem;
+    right: 1.25rem;
+    top: 50%;
+    border-top: 2px dashed rgba(27, 42, 74, 0.25);
+  }
+
+  .ticket-divider::after,
+  .ticket-divider .ticket-notch {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--paper, #F1ECE0);
+    transform: translateY(-50%);
+  }
+
+  .ticket-divider::after {
+    left: -14px;
+  }
+
+  .ticket-divider .ticket-notch {
+    right: -14px;
+  }
+
+  /* Etichette in stile boarding pass (maiuscolo, spaziato) */
+  .stub-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(27, 42, 74, 0.55);
+  }
 }
 
 /* Scrollbar */

@@ -34,9 +34,9 @@ type FormData = z.infer<typeof schema>;
 
 function Label({ children, required }: { children: React.ReactNode; required?: boolean }) {
   return (
-    <label className="block text-sm font-medium text-[#C5B99A] mb-1.5">
+    <label className="block text-sm font-medium text-ink-soft mb-1.5">
       {children}
-      {required && <span className="text-gold ml-1">*</span>}
+      {required && <span className="text-accent ml-1">*</span>}
     </label>
   );
 }
@@ -47,12 +47,12 @@ function Input({ error, ...props }: React.InputHTMLAttributes<HTMLInputElement> 
       <input
         {...props}
         className={clsx(
-          "w-full px-4 py-3 rounded-lg bg-[#1A1A1A] border text-[#F5F0E8] placeholder-[#555]",
-          "focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold/60 transition-all",
-          error ? "border-red-500/60" : "border-[#2A2A2A]"
+          "w-full px-4 py-3 rounded-lg bg-white border text-ink placeholder-ink-light/50",
+          "focus:outline-none focus:ring-2 focus:ring-ink/20 focus:border-ink/50 transition-all",
+          error ? "border-red-500/60" : "border-ink/15"
         )}
       />
-      {error && <p className="mt-1 text-xs text-red-400">{error}</p>}
+      {error && <p className="mt-1 text-xs text-red-500">{error}</p>}
     </div>
   );
 }
@@ -81,15 +81,15 @@ function RadioGroup({
             className={clsx(
               "flex-1 py-3 px-4 rounded-lg border text-sm font-medium transition-all duration-200",
               value === opt.value
-                ? "bg-gold/10 border-gold text-gold"
-                : "bg-[#1A1A1A] border-[#2A2A2A] text-[#888] hover:border-gold/40 hover:text-[#C5B99A]"
+                ? "bg-ink border-ink text-paper-card"
+                : "bg-white border-ink/15 text-ink-soft hover:border-ink/40"
             )}
           >
             {opt.label}
           </button>
         ))}
       </div>
-      {error && <p className="mt-1 text-xs text-red-400">{error}</p>}
+      {error && <p className="mt-1 text-xs text-red-500">{error}</p>}
     </div>
   );
 }
@@ -224,9 +224,9 @@ export default function RsvpForm() {
               rows={3}
               placeholder="Intolleranze alimentari, allergie, ecc."
               className={clsx(
-                "w-full px-4 py-3 rounded-lg bg-[#1A1A1A] border border-[#2A2A2A] text-[#F5F0E8]",
-                "placeholder-[#555] resize-none",
-                "focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold/60 transition-all"
+                "w-full px-4 py-3 rounded-lg bg-white border border-ink/15 text-ink",
+                "placeholder-ink-light/50 resize-none",
+                "focus:outline-none focus:ring-2 focus:ring-ink/20 focus:border-ink/50 transition-all"
               )}
             />
           </div>
@@ -235,7 +235,7 @@ export default function RsvpForm() {
 
       {/* Errore server */}
       {serverError && (
-        <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 text-sm">
+        <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/30 text-red-500 text-sm">
           {serverError}
         </div>
       )}
@@ -245,11 +245,9 @@ export default function RsvpForm() {
         type="submit"
         disabled={isSubmitting}
         className={clsx(
-          "w-full py-4 rounded-lg font-semibold text-dark transition-all duration-300",
-          "bg-gradient-to-r from-gold-dark via-gold to-gold-light",
-          "hover:shadow-[0_0_30px_rgba(201,168,76,0.4)] hover:scale-[1.01]",
-          "disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-none",
-          "text-[#0A0A0A]"
+          "w-full py-4 rounded-lg font-semibold text-paper-card transition-all duration-300",
+          "bg-ink hover:bg-ink-soft hover:scale-[1.01]",
+          "disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
         )}
       >
         {isSubmitting ? (
