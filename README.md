@@ -33,6 +33,13 @@ Modifica le variabili `EVENT` in:
 - `app/page.tsx` — nome, data, luogo, dress code
 - `lib/resend.ts` — stesse info per le email + indirizzo `from`
 
+## Asset media (foto e musica)
+
+La home carica due file opzionali dalla cartella `public/` (non versionati, li aggiungi tu):
+
+- `public/hero.jpg` — foto del festeggiato mostrata nella hero in cima alla pagina. Finché manca, appare un placeholder testuale al suo posto.
+- `public/music.mp3` — musica di sottofondo, riprodotta in loop tramite il bottone flottante in basso a destra. Nessun autoplay: i browser lo bloccano comunque, e serve un controllo pausabile per accessibilità. Se il file manca il bottone resta disabilitato.
+
 ## Deploy su Vercel
 
 1. Pusha su GitHub (`https://github.com/MLibralato91/events-repository.git`)
@@ -60,5 +67,5 @@ Modifica le variabili `EVENT` in:
 
 ## Vedere le RSVP
 
-Dal pannello Supabase → **Table Editor** → `rsvps` trovi tutti i dati in tabella.
-Puoi anche esportarli in CSV direttamente da lì.
+Vai su `/admin` (password `ADMIN_PASSWORD` da `.env.local`) per la dashboard con statistiche e tabella RSVP.
+In alternativa, dal pannello Supabase → **Table Editor** → `rsvps` trovi gli stessi dati grezzi, esportabili in CSV.

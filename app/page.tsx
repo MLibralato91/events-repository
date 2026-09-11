@@ -1,5 +1,7 @@
 import RsvpForm from "@/components/RsvpForm";
 import EventCalendar from "@/components/EventCalendar";
+import HeroPhoto from "@/components/HeroPhoto";
+import MusicPlayer from "@/components/MusicPlayer";
 
 // ─── Dati evento — modifica qui ────────────────────────────────────────────
 const EVENT = {
@@ -13,6 +15,8 @@ const EVENT = {
   coverCharge: null as string | null, // es. "€30 a persona" oppure null
   dressCode: "Smart casual",
   contactEmail: "tua@email.it",
+  heroImage: "/hero.jpg",
+  musicSrc: "/music.mp3",
 };
 
 const dateLabel = EVENT.date.toLocaleDateString("it-IT", {
@@ -33,7 +37,7 @@ function TicketCard({
   style?: React.CSSProperties;
 }) {
   return (
-    <div className={`ticket-card rounded-[28px] p-6 sm:p-8 ${className}`} style={style}>
+    <div className={`ticket-card rounded-[28px] ${className}`} style={style}>
       {children}
     </div>
   );
@@ -47,64 +51,37 @@ function TicketDivider() {
   );
 }
 
-function StubField({ label, value }: { label: string; value: string }) {
-  return (
-    <div>
-      <p className="stub-label mb-1">{label}</p>
-      <p className="text-sm text-ink font-medium">{value}</p>
-    </div>
-  );
-}
-
 export default function Home() {
   return (
     <main className="min-h-screen bg-paper text-ink flex flex-col items-center py-14 px-4">
       <div className="w-full max-w-lg">
 
-        {/* ── Ticket header: invito ── */}
-        <TicketCard className="mb-6 animate-fade-in">
-          <div className="flex justify-center mb-4">
-            <span className="text-2xl rotate-45 inline-block text-accent">✈</span>
+        {/* ── Hero: foto del festeggiato ── */}
+        <TicketCard className="mb-6 overflow-hidden animate-fade-in">
+          <HeroPhoto src={EVENT.heroImage} alt={`${EVENT.name} — festeggiato`} />
+
+          <div className="p-6 sm:p-8">
+            <p className="stub-label text-center mb-3">Sei invitato</p>
+            <h1 className="font-serif text-5xl sm:text-6xl text-center leading-tight">
+              {EVENT.age} Anni
+            </h1>
+            <h2 className="font-serif italic text-2xl sm:text-3xl text-center text-ink-soft mt-1 mb-4">
+              di {EVENT.name}
+            </h2>
+            <p className="text-sm text-ink-soft text-center">
+              {dateLabel} · ore {EVENT.time}
+            </p>
           </div>
-
-          <p className="stub-label text-center mb-3">Biglietto d&rsquo;invito</p>
-
-          <h1 className="font-serif text-5xl sm:text-6xl text-center leading-tight">
-            {EVENT.age} Anni
-          </h1>
-          <h2 className="font-serif italic text-2xl sm:text-3xl text-center text-ink-soft mt-1">
-            di {EVENT.name}
-          </h2>
-
-          <TicketDivider />
-
-          <div className="grid grid-cols-2 gap-y-4">
-            <StubField label="Data" value={dateLabel} />
-            <StubField label="Ora" value={EVENT.time} />
-            <StubField label="Luogo" value={EVENT.venue} />
-            <StubField label="Dress code" value={EVENT.dressCode} />
-          </div>
-        </TicketCard>
-
-        {/* ── Messaggio ── */}
-        <TicketCard className="mb-6 bg-ink text-paper-card animate-fade-up" style={{ animationDelay: "0.1s" }}>
-          <p className="stub-label text-paper-card/60 text-center mb-3">
-            Cari amici e parenti
-          </p>
-          <p className="font-serif italic text-lg text-center leading-relaxed">
-            Compio {EVENT.age} anni e voglio festeggiare insieme a voi.
-            Sarebbe un onore avervi al mio fianco in questo giorno speciale.
-          </p>
         </TicketCard>
 
         {/* ── Calendario ── */}
-        <TicketCard className="mb-6 animate-fade-up" style={{ animationDelay: "0.15s" }}>
+        <TicketCard className="mb-6 p-6 sm:p-8 animate-fade-up" style={{ animationDelay: "0.1s" }}>
           <p className="stub-label text-center mb-4">Segna la data</p>
           <EventCalendar date={EVENT.date} />
         </TicketCard>
 
         {/* ── Luogo ── */}
-        <TicketCard className="mb-6 animate-fade-up" style={{ animationDelay: "0.2s" }}>
+        <TicketCard className="mb-6 p-6 sm:p-8 animate-fade-up" style={{ animationDelay: "0.15s" }}>
           <p className="stub-label text-center mb-2">Dove</p>
           <p className="font-serif text-xl text-center mb-1">{EVENT.venue}</p>
           <p className="text-sm text-ink-soft text-center">{EVENT.address}</p>
@@ -125,8 +102,14 @@ export default function Home() {
           </p>
         </TicketCard>
 
+        {/* ── Outfit ── */}
+        <TicketCard className="mb-6 p-6 sm:p-8 animate-fade-up" style={{ animationDelay: "0.2s" }}>
+          <p className="stub-label text-center mb-2">Dress code</p>
+          <p className="font-serif text-xl text-center">{EVENT.dressCode}</p>
+        </TicketCard>
+
         {/* ── Form RSVP ── */}
-        <TicketCard className="animate-fade-up" style={{ animationDelay: "0.25s" }}>
+        <TicketCard className="p-6 sm:p-8 animate-fade-up" style={{ animationDelay: "0.25s" }}>
           <p className="stub-label text-center mb-1">Conferma la presenza</p>
           <p className="text-sm text-ink-soft text-center mb-6">
             Compila il form qui sotto per farci sapere se ci sarai.
@@ -146,6 +129,8 @@ export default function Home() {
         </footer>
 
       </div>
+
+      <MusicPlayer src={EVENT.musicSrc} />
     </main>
   );
 }
