@@ -128,12 +128,12 @@ input[type="checkbox"]:checked {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--dark);
+  background: var(--paper);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--dark-border);
+  background: rgba(27, 42, 74, 0.15);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--gold-dark);
+  background: rgba(27, 42, 74, 0.3);
 }
