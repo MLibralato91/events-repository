@@ -134,7 +134,7 @@ export default function Home() {
 
         {/* ── Nota simpatica ── */}
         <TicketCard className="mb-6 overflow-hidden animate-fade-up" style={{ animationDelay: "0.22s" }}>
-          <p className="stub-label text-center py-4">Ovviamente offrei lui</p>
+          <p className="stub-label text-center py-4">Ovviamente offre lui</p>
           <HeroPhoto
             src={EVENT.funImage}
             alt={`${EVENT.name} in azione`}

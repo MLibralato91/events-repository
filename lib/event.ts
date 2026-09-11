@@ -10,7 +10,7 @@ export const EVENT = {
   timeZone: "Europe/Rome",
   venue: "Nome del Locale",
   address: "Via Esempio 1, Milano",
-  deadline: "16 ottobre",
+  deadline: "17 ottobre",
   coverCharge: null as string | null, // es. "€30 a persona" oppure null
   dressCode: "Smart casual",
   contactEmail: "matteovanzari@yahoo.it",
