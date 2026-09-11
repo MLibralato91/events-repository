@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { supabaseAdmin } from "@/lib/supabase-admin";
 import type { Rsvp } from "@/lib/supabase";
 import LogoutButton from "@/components/LogoutButton";
@@ -36,7 +37,15 @@ export default async function AdminPage() {
       <div className="max-w-5xl mx-auto">
         <div className="flex items-center justify-between mb-8">
           <h1 className="font-serif text-3xl">RSVP Ricevute</h1>
-          <LogoutButton />
+          <div className="flex items-center gap-4">
+            <Link
+              href="/"
+              className="text-xs text-ink-soft hover:text-accent transition-colors uppercase tracking-wide"
+            >
+              ← Home
+            </Link>
+            <LogoutButton />
+          </div>
         </div>
 
         <div className="flex flex-wrap gap-3 mb-8">

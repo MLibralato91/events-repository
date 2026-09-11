@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -64,6 +65,13 @@ export default function AdminLoginPage() {
             {loading ? "Verifica..." : "Entra"}
           </button>
         </form>
+
+        <Link
+          href="/"
+          className="block mt-6 text-sm text-ink-soft text-center hover:text-accent transition-colors"
+        >
+          ← Torna alla home
+        </Link>
       </div>
     </main>
   );

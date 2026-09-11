@@ -145,8 +145,14 @@ export default function Home() {
           >
             {EVENT.contactEmail}
           </a>{" "}
-          {/* Accesso admin nascosto: stesso colore dello sfondo, invisibile a vista */}
-          <a href="/admin" className="text-paper hover:text-paper" aria-label="Area riservata">
+          {/* Accesso admin nascosto: stesso colore dello sfondo, invisibile a vista.
+              min 16px per un'area di tocco decente pur restando invisibile. */}
+          <a
+            href="/admin"
+            className="text-paper hover:text-paper inline-flex items-center justify-center align-middle"
+            style={{ width: 16, height: 16, fontSize: 16 }}
+            aria-label="Area riservata"
+          >
             ·
           </a>
         </footer>
