@@ -9,28 +9,31 @@ const EVENT = {
   from: EVENT_BASE.resendFrom,
 };
 
-// ─── Template email conferma ───────────────────────────────────────────────
+// ─── Template email conferma — stile "boarding pass" della pagina ─────────
 function buildConfirmHtml(nome: string, partecipa: boolean, accompagnato: boolean, nomeAccomp?: string | null) {
-  const gold = "#C9A84C";
-  const dark = "#0A0A0A";
+  const ink = "#1B2A4A";
+  const inkSoft = "#33456B";
+  const accent = "#B5654F";
+  const paper = "#F1ECE0";
+  const paperCard = "#FBF8F1";
 
   const bodyContent = partecipa
     ? `
-      <p style="color:#C5B99A;font-size:16px;line-height:1.7;margin:0 0 24px;">
-        Ottimo! La tua presenza alla festa di <strong style="color:${gold}">${EVENT.age} anni di ${EVENT.name}</strong> è confermata.
-        ${accompagnato && nomeAccomp ? `Hai segnalato che verrai con <strong style="color:${gold}">${nomeAccomp}</strong>.` : ""}
+      <p style="color:${inkSoft};font-size:16px;line-height:1.7;margin:0 0 24px;">
+        Ottimo! La tua presenza alla festa di <strong style="color:${accent}">${EVENT.age} anni di ${EVENT.name}</strong> è confermata.
+        ${accompagnato && nomeAccomp ? `Hai segnalato che verrai con <strong style="color:${accent}">${nomeAccomp}</strong>.` : ""}
       </p>
-      <div style="background:#141414;border:1px solid rgba(201,168,76,0.2);border-radius:12px;padding:20px;margin-bottom:24px;">
-        <p style="color:${gold};font-size:11px;letter-spacing:0.3em;text-transform:uppercase;margin:0 0 12px;font-weight:600;">Dettagli</p>
-        <p style="color:#C5B99A;font-size:14px;margin:6px 0;">📅 ${EVENT.date} alle ${EVENT.time}</p>
-        <p style="color:#C5B99A;font-size:14px;margin:6px 0;">📍 ${EVENT.venue}</p>
-        <p style="color:#888;font-size:13px;margin:6px 0;">${EVENT.address}</p>
+      <div style="background:${paper};border-top:2px dashed rgba(27,42,74,0.25);border-bottom:2px dashed rgba(27,42,74,0.25);border-radius:12px;padding:20px;margin-bottom:24px;">
+        <p style="color:${inkSoft};font-size:11px;letter-spacing:0.15em;text-transform:uppercase;margin:0 0 12px;font-weight:600;">Dettagli</p>
+        <p style="color:${ink};font-size:14px;margin:6px 0;">📅 ${EVENT.date} alle ${EVENT.time}</p>
+        <p style="color:${ink};font-size:14px;margin:6px 0;">📍 ${EVENT.venue}</p>
+        <p style="color:${inkSoft};font-size:13px;margin:6px 0;">${EVENT.address}</p>
       </div>
-      <p style="color:#666;font-size:13px;">Ti invieremo un promemoria qualche giorno prima. A presto!</p>
+      <p style="color:${inkSoft};font-size:13px;">Ti invieremo un promemoria qualche giorno prima. A presto!</p>
     `
     : `
-      <p style="color:#C5B99A;font-size:16px;line-height:1.7;margin:0 0 24px;">
-        Ci dispiace che non potrai esserci per i <strong style="color:${gold}">${EVENT.age} anni di ${EVENT.name}</strong>.
+      <p style="color:${inkSoft};font-size:16px;line-height:1.7;margin:0 0 24px;">
+        Ci dispiace che non potrai esserci per i <strong style="color:${accent}">${EVENT.age} anni di ${EVENT.name}</strong>.
         Abbiamo registrato la tua risposta. Ci vediamo alla prossima occasione!
       </p>
     `;
@@ -42,19 +45,19 @@ function buildConfirmHtml(nome: string, partecipa: boolean, accompagnato: boolea
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body style="margin:0;padding:0;background-color:#000;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
-      <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#000;padding:40px 20px;">
+    <body style="margin:0;padding:0;background-color:${paper};font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
+      <table width="100%" cellpadding="0" cellspacing="0" style="background-color:${paper};padding:40px 20px;">
         <tr>
           <td align="center">
-            <table width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background-color:${dark};border:1px solid rgba(201,168,76,0.15);border-radius:16px;overflow:hidden;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background-color:${paperCard};border:1px solid rgba(27,42,74,0.1);border-radius:16px;overflow:hidden;">
 
               <!-- Header -->
               <tr>
-                <td style="padding:40px 40px 32px;text-align:center;border-bottom:1px solid rgba(201,168,76,0.1);">
-                  <p style="color:${gold};font-size:11px;letter-spacing:0.4em;text-transform:uppercase;margin:0 0 12px;font-weight:600;">
+                <td style="padding:40px 40px 32px;text-align:center;border-bottom:1px solid rgba(27,42,74,0.1);">
+                  <p style="color:${accent};font-size:11px;letter-spacing:0.3em;text-transform:uppercase;margin:0 0 12px;font-weight:600;">
                     ${partecipa ? "Presenza Confermata ✓" : "Risposta Ricevuta"}
                   </p>
-                  <h1 style="color:#F5F0E8;font-size:32px;font-weight:700;margin:0;font-family:Georgia,serif;">
+                  <h1 style="color:${ink};font-size:32px;font-weight:700;margin:0;font-family:Georgia,serif;">
                     Ciao, ${nome}!
                   </h1>
                 </td>
@@ -69,8 +72,8 @@ function buildConfirmHtml(nome: string, partecipa: boolean, accompagnato: boolea
 
               <!-- Footer -->
               <tr>
-                <td style="padding:24px 40px;border-top:1px solid rgba(201,168,76,0.1);text-align:center;">
-                  <p style="color:#444;font-size:12px;margin:0;">
+                <td style="padding:24px 40px;border-top:1px solid rgba(27,42,74,0.1);text-align:center;">
+                  <p style="color:${inkSoft};font-size:12px;margin:0;opacity:0.6;">
                     Email automatica · Non rispondere a questo messaggio
                   </p>
                 </td>
@@ -141,8 +144,8 @@ export async function sendAdminNotification({
     to: [adminEmail],
     subject: `[RSVP] ${nome} ${cognome} — ${status}`,
     html: `
-      <table style="font-family:monospace;font-size:14px;color:#ccc;background:#111;padding:24px;border-radius:8px;width:100%;max-width:500px;">
-        <tr><td style="color:#C9A84C;padding-bottom:16px;font-size:16px;">Nuova RSVP ricevuta</td></tr>
+      <table style="font-family:monospace;font-size:14px;color:#1B2A4A;background:#FBF8F1;border:1px solid rgba(27,42,74,0.15);padding:24px;border-radius:12px;width:100%;max-width:500px;">
+        <tr><td style="color:#B5654F;padding-bottom:16px;font-size:16px;">Nuova RSVP ricevuta</td></tr>
         <tr><td><strong>Nome:</strong> ${nome} ${cognome}</td></tr>
         <tr><td><strong>Email:</strong> ${email}</td></tr>
         <tr><td><strong>Partecipa:</strong> ${partecipa ? "Sì" : "No"}</td></tr>
