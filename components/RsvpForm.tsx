@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -41,11 +41,15 @@ function Label({ children, required }: { children: React.ReactNode; required?: b
   );
 }
 
-function Input({ error, ...props }: React.InputHTMLAttributes<HTMLInputElement> & { error?: string }) {
+const Input = forwardRef<
+  HTMLInputElement,
+  React.InputHTMLAttributes<HTMLInputElement> & { error?: string }
+>(function Input({ error, ...props }, ref) {
   return (
     <div>
       <input
         {...props}
+        ref={ref}
         className={clsx(
           "w-full px-4 py-3 rounded-lg bg-white border text-ink placeholder-ink-light/50",
           "focus:outline-none focus:ring-2 focus:ring-ink/20 focus:border-ink/50 transition-all",
@@ -55,7 +59,7 @@ function Input({ error, ...props }: React.InputHTMLAttributes<HTMLInputElement> 
       {error && <p className="mt-1 text-xs text-red-500">{error}</p>}
     </div>
   );
-}
+});
 
 function RadioGroup({
   name,

@@ -26,12 +26,10 @@ export type Rsvp = {
 };
 
 export async function insertRsvp(rsvp: Omit<Rsvp, "id" | "created_at">) {
-  const { data, error } = await supabase
-    .from("rsvps")
-    .insert([rsvp])
-    .select()
-    .single();
+  // Niente .select() dopo l'insert: la RETURNING implicita passerebbe anche
+  // dalla RLS di SELECT, che per il ruolo anon non esiste (le letture sono
+  // riservate all'admin) — l'insert da solo basta e rispetta quella policy.
+  const { error } = await supabase.from("rsvps").insert([rsvp]);
 
   if (error) throw error;
-  return data as Rsvp;
 }
