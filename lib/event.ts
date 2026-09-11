@@ -4,13 +4,13 @@
 export const EVENT = {
   name: "Vanzoo",
   age: 30,
-  date: new Date(2026, 9, 23), // 23 Ottobre 2026 — mese 0-indicizzato
+  date: new Date(2026, 9, 17), // 17 Ottobre 2026 — mese 0-indicizzato
   time: "20:00",
   durationHours: 4, // usato per l'evento esportato nel calendario
   timeZone: "Europe/Rome",
   venue: "Nome del Locale",
   address: "Via Esempio 1, Milano",
-  deadline: "17 ottobre",
+  deadline: "16 ottobre",
   coverCharge: null as string | null, // es. "€30 a persona" oppure null
   dressCode: "Smart casual",
   contactEmail: "matteovanzari@yahoo.it",
