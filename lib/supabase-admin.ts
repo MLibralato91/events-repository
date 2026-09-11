@@ -13,4 +13,10 @@ if (!supabaseUrl || !serviceRoleKey) {
 
 export const supabaseAdmin = createClient(supabaseUrl, serviceRoleKey, {
   auth: { autoRefreshToken: false, persistSession: false },
+  global: {
+    // Next.js applica la Data Cache anche ai fetch di librerie esterne come
+    // supabase-js: senza questo, "/admin" può servire RSVP stale nonostante
+    // `dynamic = "force-dynamic"` sulla pagina.
+    fetch: (input, init) => fetch(input, { ...init, cache: "no-store" }),
+  },
 });
