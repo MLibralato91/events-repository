@@ -4,6 +4,7 @@ import {
   buildReminderHtml,
   buildAdminNotificationHtml,
 } from "@/lib/resend";
+import EmailPreviewFrame from "@/components/EmailPreviewFrame";
 
 // ─── Dati d'esempio — solo per l'anteprima, non toccano email reali ───────
 const SAMPLE_NOME = "Giorgia";
@@ -17,19 +18,16 @@ const TEMPLATES = [
     label: "Conferma — Sì",
     description: "Inviata automaticamente all'ospite subito dopo che conferma la presenza.",
     html: buildConfirmHtml(SAMPLE_NOME, true, true, "Marco Rossi"),
-    height: 780,
   },
   {
     label: "Conferma — No",
     description: "Inviata automaticamente quando l'ospite risponde che non può venire.",
     html: buildConfirmHtml(SAMPLE_NOME, false, false, null),
-    height: 460,
   },
   {
     label: "Promemoria",
     description: "Inviata manualmente da te dal bottone \"Invia promemoria\" nella dashboard.",
     html: buildReminderHtml(SAMPLE_NOME),
-    height: 780,
   },
   {
     label: "Notifica admin — partecipa",
@@ -45,7 +43,6 @@ const TEMPLATES = [
         note: "Sono intollerante al lattosio",
       })
     ),
-    height: 300,
   },
   {
     label: "Notifica admin — non partecipa",
@@ -61,7 +58,6 @@ const TEMPLATES = [
         note: null,
       })
     ),
-    height: 220,
   },
 ];
 
@@ -88,12 +84,7 @@ export default function EmailPreviewPage() {
             <div key={t.label}>
               <p className="stub-label mb-1">{t.label}</p>
               <p className="text-sm text-ink-soft mb-3">{t.description}</p>
-              <iframe
-                srcDoc={t.html}
-                title={t.label}
-                style={{ height: t.height }}
-                className="w-full block rounded-xl border border-ink/10"
-              />
+              <EmailPreviewFrame html={t.html} title={t.label} />
             </div>
           ))}
         </div>
