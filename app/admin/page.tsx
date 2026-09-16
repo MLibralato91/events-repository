@@ -2,6 +2,7 @@ import Link from "next/link";
 import { supabaseAdmin } from "@/lib/supabase-admin";
 import type { Rsvp } from "@/lib/supabase";
 import LogoutButton from "@/components/LogoutButton";
+import SendRemindersButton from "@/components/SendRemindersButton";
 
 export const dynamic = "force-dynamic";
 
@@ -31,6 +32,9 @@ export default async function AdminPage() {
   const nonPartecipano = rsvps.filter((r) => !r.partecipa);
   const accompagnatori = rsvps.filter((r) => r.accompagnato).length;
   const totalePersone = partecipano.length + accompagnatori;
+  const emailUnicheChePartecipano = new Set(
+    partecipano.map((r) => r.email.trim().toLowerCase())
+  ).size;
 
   return (
     <main className="min-h-screen bg-paper text-ink px-4 py-10">
@@ -55,6 +59,8 @@ export default async function AdminPage() {
           <StatCard label="Con accompagnatore" value={accompagnatori} />
           <StatCard label="Persone attese" value={totalePersone} />
         </div>
+
+        <SendRemindersButton count={emailUnicheChePartecipano} />
 
         <div className="ticket-card rounded-2xl overflow-hidden">
           {rsvps.length === 0 ? (
