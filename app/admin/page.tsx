@@ -43,6 +43,12 @@ export default async function AdminPage() {
           <h1 className="font-serif text-3xl">RSVP Ricevute</h1>
           <div className="flex items-center gap-4">
             <Link
+              href="/admin/email-preview"
+              className="text-xs text-ink-soft hover:text-accent transition-colors uppercase tracking-wide"
+            >
+              Anteprima Email
+            </Link>
+            <Link
               href="/"
               className="text-xs text-ink-soft hover:text-accent transition-colors uppercase tracking-wide"
             >

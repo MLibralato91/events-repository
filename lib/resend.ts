@@ -10,7 +10,7 @@ const EVENT = {
 };
 
 // ─── Template email conferma — stile "boarding pass" della pagina ─────────
-function buildConfirmHtml(nome: string, partecipa: boolean, accompagnato: boolean, nomeAccomp?: string | null) {
+export function buildConfirmHtml(nome: string, partecipa: boolean, accompagnato: boolean, nomeAccomp?: string | null) {
   const ink = "#1B2A4A";
   const inkSoft = "#33456B";
   const accent = "#B5654F";
@@ -46,14 +46,14 @@ function buildConfirmHtml(nome: string, partecipa: boolean, accompagnato: boolea
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body style="margin:0;padding:0;background-color:${paper};font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
-      <table width="100%" cellpadding="0" cellspacing="0" style="background-color:${paper};padding:40px 20px;">
+      <table width="100%" cellpadding="0" cellspacing="0" style="background-color:${paper};padding:32px 16px;">
         <tr>
           <td align="center">
             <table width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background-color:${paperCard};border:1px solid rgba(27,42,74,0.1);border-radius:16px;overflow:hidden;">
 
               <!-- Header -->
               <tr>
-                <td style="padding:40px 40px 32px;text-align:center;border-bottom:1px solid rgba(27,42,74,0.1);">
+                <td style="padding:32px 28px 28px;text-align:center;border-bottom:1px solid rgba(27,42,74,0.1);">
                   <p style="color:${accent};font-size:11px;letter-spacing:0.3em;text-transform:uppercase;margin:0 0 12px;font-weight:600;">
                     ${partecipa ? "Presenza Confermata ✓" : "Risposta Ricevuta"}
                   </p>
@@ -65,14 +65,14 @@ function buildConfirmHtml(nome: string, partecipa: boolean, accompagnato: boolea
 
               <!-- Body -->
               <tr>
-                <td style="padding:32px 40px;">
+                <td style="padding:28px;">
                   ${bodyContent}
                 </td>
               </tr>
 
               <!-- Footer -->
               <tr>
-                <td style="padding:24px 40px;border-top:1px solid rgba(27,42,74,0.1);text-align:center;">
+                <td style="padding:20px 28px;border-top:1px solid rgba(27,42,74,0.1);text-align:center;">
                   <p style="color:${inkSoft};font-size:12px;margin:0;opacity:0.6;">
                     Email automatica · Non rispondere a questo messaggio
                   </p>
@@ -89,7 +89,7 @@ function buildConfirmHtml(nome: string, partecipa: boolean, accompagnato: boolea
 }
 
 // ─── Template email promemoria — inviata manualmente dall'admin ───────────
-function buildReminderHtml(nome: string) {
+export function buildReminderHtml(nome: string) {
   const ink = "#1B2A4A";
   const inkSoft = "#33456B";
   const accent = "#B5654F";
@@ -104,14 +104,14 @@ function buildReminderHtml(nome: string) {
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body style="margin:0;padding:0;background-color:${paper};font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
-      <table width="100%" cellpadding="0" cellspacing="0" style="background-color:${paper};padding:40px 20px;">
+      <table width="100%" cellpadding="0" cellspacing="0" style="background-color:${paper};padding:32px 16px;">
         <tr>
           <td align="center">
             <table width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background-color:${paperCard};border:1px solid rgba(27,42,74,0.1);border-radius:16px;overflow:hidden;">
 
               <!-- Header -->
               <tr>
-                <td style="padding:40px 40px 32px;text-align:center;border-bottom:1px solid rgba(27,42,74,0.1);">
+                <td style="padding:32px 28px 28px;text-align:center;border-bottom:1px solid rgba(27,42,74,0.1);">
                   <p style="color:${accent};font-size:11px;letter-spacing:0.3em;text-transform:uppercase;margin:0 0 12px;font-weight:600;">
                     Promemoria
                   </p>
@@ -123,7 +123,7 @@ function buildReminderHtml(nome: string) {
 
               <!-- Body -->
               <tr>
-                <td style="padding:32px 40px;">
+                <td style="padding:28px;">
                   <p style="color:${inkSoft};font-size:16px;line-height:1.7;margin:0 0 24px;">
                     Manca pochissimo ai <strong style="color:${accent}">${EVENT.age} anni di ${EVENT.name}</strong> — ecco un riepilogo per non farti trovare impreparato.
                   </p>
@@ -140,7 +140,7 @@ function buildReminderHtml(nome: string) {
 
               <!-- Footer -->
               <tr>
-                <td style="padding:24px 40px;border-top:1px solid rgba(27,42,74,0.1);text-align:center;">
+                <td style="padding:20px 28px;border-top:1px solid rgba(27,42,74,0.1);text-align:center;">
                   <p style="color:${inkSoft};font-size:12px;margin:0;opacity:0.6;">
                     Email automatica · Non rispondere a questo messaggio
                   </p>
@@ -195,7 +195,7 @@ export async function sendConfirmEmail({
 }
 
 // ─── Notifica all'admin ────────────────────────────────────────────────────
-export async function sendAdminNotification({
+export function buildAdminNotificationHtml({
   nome,
   cognome,
   email,
@@ -212,27 +212,39 @@ export async function sendAdminNotification({
   nome_accompagnatore?: string | null;
   note?: string | null;
 }) {
+  return `
+    <table style="font-family:monospace;font-size:14px;color:#1B2A4A;background:#FBF8F1;border:1px solid rgba(27,42,74,0.15);padding:24px;border-radius:12px;width:100%;max-width:500px;">
+      <tr><td style="color:#B5654F;padding-bottom:16px;font-size:16px;">Nuova RSVP ricevuta</td></tr>
+      <tr><td><strong>Nome:</strong> ${nome} ${cognome}</td></tr>
+      <tr><td><strong>Email:</strong> ${email}</td></tr>
+      <tr><td><strong>Partecipa:</strong> ${partecipa ? "Sì" : "No"}</td></tr>
+      ${partecipa ? `
+        <tr><td><strong>Accompagnato:</strong> ${accompagnato ? "Sì" : "No"}</td></tr>
+        ${nome_accompagnatore ? `<tr><td><strong>Accompagnatore:</strong> ${nome_accompagnatore}</td></tr>` : ""}
+        ${note ? `<tr><td><strong>Note:</strong> ${note}</td></tr>` : ""}
+      ` : ""}
+    </table>
+  `;
+}
+
+export async function sendAdminNotification(params: {
+  nome: string;
+  cognome: string;
+  email: string;
+  partecipa: boolean;
+  accompagnato: boolean;
+  nome_accompagnatore?: string | null;
+  note?: string | null;
+}) {
   const adminEmail = process.env.ADMIN_EMAIL;
   if (!adminEmail) return; // Skip se non configurato
 
-  const status = partecipa ? "✅ PARTECIPA" : "❌ NON PARTECIPA";
+  const status = params.partecipa ? "✅ PARTECIPA" : "❌ NON PARTECIPA";
 
   await resend.emails.send({
     from: EVENT.from,
     to: [adminEmail],
-    subject: `[RSVP] ${nome} ${cognome} — ${status}`,
-    html: `
-      <table style="font-family:monospace;font-size:14px;color:#1B2A4A;background:#FBF8F1;border:1px solid rgba(27,42,74,0.15);padding:24px;border-radius:12px;width:100%;max-width:500px;">
-        <tr><td style="color:#B5654F;padding-bottom:16px;font-size:16px;">Nuova RSVP ricevuta</td></tr>
-        <tr><td><strong>Nome:</strong> ${nome} ${cognome}</td></tr>
-        <tr><td><strong>Email:</strong> ${email}</td></tr>
-        <tr><td><strong>Partecipa:</strong> ${partecipa ? "Sì" : "No"}</td></tr>
-        ${partecipa ? `
-          <tr><td><strong>Accompagnato:</strong> ${accompagnato ? "Sì" : "No"}</td></tr>
-          ${nome_accompagnatore ? `<tr><td><strong>Accompagnatore:</strong> ${nome_accompagnatore}</td></tr>` : ""}
-          ${note ? `<tr><td><strong>Note:</strong> ${note}</td></tr>` : ""}
-        ` : ""}
-      </table>
-    `,
+    subject: `[RSVP] ${params.nome} ${params.cognome} — ${status}`,
+    html: buildAdminNotificationHtml(params),
   });
 }
