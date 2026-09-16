@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
   }
 
   const results = await Promise.allSettled(
-    [...uniqueByEmail.values()].map((r) => sendReminderEmail({ nome: r.nome, email: r.email }))
+    Array.from(uniqueByEmail.values()).map((r) => sendReminderEmail({ nome: r.nome, email: r.email }))
   );
 
   const sent = results.filter((r) => r.status === "fulfilled").length;
