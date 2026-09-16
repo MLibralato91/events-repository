@@ -134,7 +134,7 @@ export default function RsvpForm() {
         throw new Error(err.error || "Qualcosa è andato storto");
       }
 
-      router.push("/conferma");
+      router.push(`/conferma?partecipa=${data.partecipa}`);
     } catch (err) {
       setServerError(err instanceof Error ? err.message : "Errore imprevisto");
       setIsSubmitting(false);
