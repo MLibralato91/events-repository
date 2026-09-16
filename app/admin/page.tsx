@@ -67,8 +67,8 @@ export default async function AdminPage() {
                 <thead>
                   <tr className="border-b border-ink/15 text-left stub-label">
                     <th className="px-4 py-3 font-medium">Nome</th>
-                    <th className="px-4 py-3 font-medium">Email</th>
                     <th className="px-4 py-3 font-medium">Partecipa</th>
+                    <th className="px-4 py-3 font-medium">Email</th>
                     <th className="px-4 py-3 font-medium">Accompagnatore</th>
                     <th className="px-4 py-3 font-medium">Note</th>
                     <th className="px-4 py-3 font-medium">Ricevuta</th>
@@ -83,7 +83,6 @@ export default async function AdminPage() {
                       <td className="px-4 py-3 whitespace-nowrap text-ink">
                         {r.nome} {r.cognome}
                       </td>
-                      <td className="px-4 py-3 text-ink-soft">{r.email}</td>
                       <td className="px-4 py-3">
                         <span
                           className={
@@ -95,6 +94,7 @@ export default async function AdminPage() {
                           {r.partecipa ? "Sì" : "No"}
                         </span>
                       </td>
+                      <td className="px-4 py-3 text-ink-soft">{r.email}</td>
                       <td className="px-4 py-3 text-ink-soft">
                         {r.accompagnato
                           ? r.nome_accompagnatore || "Sì (nome non indicato)"
