@@ -65,33 +65,8 @@ export default function Home() {
           </div>
         </TicketCard>
 
-        {/* ── Calendario ── */}
-        <TicketCard className="mb-6 p-6 sm:p-8 animate-fade-up" style={{ animationDelay: "0.1s" }}>
-          <p className="stub-label text-center mb-4">Segna la data</p>
-          <EventCalendar date={EVENT.date} />
-
-          <TicketDivider />
-
-          <div className="flex flex-col sm:flex-row gap-3">
-            <a
-              href={googleCalendarUrl()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 text-center py-3 px-4 rounded-lg border border-ink/15 text-sm font-medium text-ink-soft hover:border-ink/40 hover:text-ink transition-colors"
-            >
-              📅 Google Calendar
-            </a>
-            <a
-              href="/api/calendar"
-              className="flex-1 text-center py-3 px-4 rounded-lg border border-ink/15 text-sm font-medium text-ink-soft hover:border-ink/40 hover:text-ink transition-colors"
-            >
-              📥 Apple / Outlook (.ics)
-            </a>
-          </div>
-        </TicketCard>
-
         {/* ── Countdown ── */}
-        <TicketCard className="mb-6 p-6 sm:p-8 animate-fade-up" style={{ animationDelay: "0.15s" }}>
+        <TicketCard className="mb-6 p-6 sm:p-8 animate-fade-up" style={{ animationDelay: "0.1s" }}>
           <p className="stub-label text-center mb-4">Manca ancora</p>
           <Countdown target={eventDateTime} />
           <p className="stub-label text-center mt-4">
@@ -100,7 +75,7 @@ export default function Home() {
         </TicketCard>
 
         {/* ── Luogo ── */}
-        <TicketCard className="mb-6 p-6 sm:p-8 animate-fade-up" style={{ animationDelay: "0.2s" }}>
+        <TicketCard className="mb-6 p-6 sm:p-8 animate-fade-up" style={{ animationDelay: "0.15s" }}>
           <p className="stub-label text-center mb-2">Dove</p>
           <p className="font-serif text-xl text-center mb-1">{EVENT.venue}</p>
           <p className="text-sm text-ink-soft text-center mb-4">{EVENT.address}</p>
@@ -132,8 +107,33 @@ export default function Home() {
           </p>
         </TicketCard>
 
+        {/* ── Calendario ── */}
+        <TicketCard className="mb-6 p-6 sm:p-8 animate-fade-up" style={{ animationDelay: "0.2s" }}>
+          <p className="stub-label text-center mb-4">Segna la data</p>
+          <EventCalendar date={EVENT.date} />
+
+          <TicketDivider />
+
+          <div className="flex flex-col sm:flex-row gap-3">
+            <a
+              href={googleCalendarUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 text-center py-3 px-4 rounded-lg border border-ink/15 text-sm font-medium text-ink-soft hover:border-ink/40 hover:text-ink transition-colors"
+            >
+              📅 Google Calendar
+            </a>
+            <a
+              href="/api/calendar"
+              className="flex-1 text-center py-3 px-4 rounded-lg border border-ink/15 text-sm font-medium text-ink-soft hover:border-ink/40 hover:text-ink transition-colors"
+            >
+              📥 Apple / Outlook (.ics)
+            </a>
+          </div>
+        </TicketCard>
+
         {/* ── Nota simpatica ── */}
-        <TicketCard className="mb-6 overflow-hidden animate-fade-up" style={{ animationDelay: "0.22s" }}>
+        <TicketCard className="mb-6 overflow-hidden animate-fade-up" style={{ animationDelay: "0.25s" }}>
           <p className="stub-label text-center py-4">Ovviamente offre lui</p>
           <HeroPhoto
             src={EVENT.funImage}
@@ -143,14 +143,14 @@ export default function Home() {
         </TicketCard>
 
         {/* ── Outfit ── */}
-        <TicketCard className="mb-6 p-6 sm:p-8 animate-fade-up" style={{ animationDelay: "0.25s" }}>
+        <TicketCard className="mb-6 p-6 sm:p-8 animate-fade-up" style={{ animationDelay: "0.3s" }}>
           <p className="stub-label text-center mb-2">Dress code</p>
           <p className="font-serif text-xl text-center mb-3">{EVENT.dressCode}</p>
           <p className="text-sm text-ink-soft text-center max-w-sm mx-auto">{EVENT.dressCodeNote}</p>
         </TicketCard>
 
         {/* ── Form RSVP ── */}
-        <TicketCard className="p-6 sm:p-8 animate-fade-up" style={{ animationDelay: "0.3s" }}>
+        <TicketCard className="p-6 sm:p-8 animate-fade-up" style={{ animationDelay: "0.35s" }}>
           <p className="stub-label text-center mb-1">Conferma la presenza</p>
           <p className="text-sm text-ink-soft text-center mb-6">
             Compila il form qui sotto per farci sapere se ci sarai.

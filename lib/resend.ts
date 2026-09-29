@@ -1,5 +1,5 @@
 import { Resend } from "resend";
-import { EVENT as EVENT_BASE, eventDateLabel } from "./event";
+import { EVENT as EVENT_BASE, eventDateLabel, mapsUrl } from "./event";
 
 const resend = new Resend(process.env.RESEND_API_KEY!);
 
@@ -26,7 +26,7 @@ export function buildConfirmHtml(nome: string, partecipa: boolean, accompagnato:
       <div style="background:${paper};border-top:2px dashed rgba(27,42,74,0.25);border-bottom:2px dashed rgba(27,42,74,0.25);border-radius:12px;padding:20px;margin-bottom:24px;">
         <p style="color:${inkSoft};font-size:11px;letter-spacing:0.15em;text-transform:uppercase;margin:0 0 12px;font-weight:600;">Dettagli</p>
         <p style="color:${ink};font-size:14px;margin:6px 0;">📅 ${EVENT.date} alle ${EVENT.time}</p>
-        <p style="color:${ink};font-size:14px;margin:6px 0;">📍 ${EVENT.venue}</p>
+        <p style="color:${ink};font-size:14px;margin:6px 0;">📍 <a href="${mapsUrl()}" style="color:${ink};text-decoration:underline;">${EVENT.venue}</a></p>
         <p style="color:${inkSoft};font-size:13px;margin:6px 0;">${EVENT.address}</p>
       </div>
       <p style="color:${inkSoft};font-size:13px;margin:0 0 24px;">Ti invieremo un promemoria qualche giorno prima. A presto!</p>
@@ -140,11 +140,21 @@ export function buildReminderHtml(nome: string) {
                   <div style="background:${paper};border-top:2px dashed rgba(27,42,74,0.25);border-bottom:2px dashed rgba(27,42,74,0.25);border-radius:12px;padding:20px;margin-bottom:24px;">
                     <p style="color:${inkSoft};font-size:11px;letter-spacing:0.15em;text-transform:uppercase;margin:0 0 12px;font-weight:600;">Dettagli</p>
                     <p style="color:${ink};font-size:14px;margin:6px 0;">📅 ${EVENT.date} alle ${EVENT.time}</p>
-                    <p style="color:${ink};font-size:14px;margin:6px 0;">📍 ${EVENT.venue}</p>
+                    <p style="color:${ink};font-size:14px;margin:6px 0;">📍 <a href="${mapsUrl()}" style="color:${ink};text-decoration:underline;">${EVENT.venue}</a></p>
                     <p style="color:${inkSoft};font-size:13px;margin:6px 0;">${EVENT.address}</p>
                     <p style="color:${ink};font-size:14px;margin:12px 0 0;">👔 ${EVENT.dressCode}</p>
                   </div>
-                  <p style="color:${inkSoft};font-size:13px;">A prestissimo!</p>
+                  <p style="color:${inkSoft};font-size:13px;margin:0 0 24px;">A prestissimo!</p>
+                  <table cellpadding="0" cellspacing="0" style="width:100%;">
+                    <tr>
+                      <td style="border-radius:10px;background:${paper};padding:16px 20px;text-align:center;">
+                        <p style="color:${inkSoft};font-size:13px;margin:0 0 10px;">📸 Segnati questo link: dopo la festa carica lì le tue foto.</p>
+                        <a href="${EVENT.photoDriveUrl}" style="display:inline-block;background:${ink};color:${paperCard};font-size:13px;font-weight:600;text-decoration:none;padding:10px 20px;border-radius:8px;">
+                          Apri la cartella foto
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
                 </td>
               </tr>
 
