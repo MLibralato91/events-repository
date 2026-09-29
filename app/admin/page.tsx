@@ -117,7 +117,7 @@ export default async function AdminPage() {
                       </td>
                       <td className="px-4 py-3 text-ink-soft/70 whitespace-nowrap">
                         {r.created_at
-                          ? new Date(r.created_at).toLocaleString("it-IT")
+                          ? new Date(r.created_at).toLocaleString("it-IT", { timeZone: "Europe/Rome" })
                           : "—"}
                       </td>
                     </tr>
