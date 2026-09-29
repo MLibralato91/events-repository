@@ -29,7 +29,17 @@ export function buildConfirmHtml(nome: string, partecipa: boolean, accompagnato:
         <p style="color:${ink};font-size:14px;margin:6px 0;">📍 ${EVENT.venue}</p>
         <p style="color:${inkSoft};font-size:13px;margin:6px 0;">${EVENT.address}</p>
       </div>
-      <p style="color:${inkSoft};font-size:13px;">Ti invieremo un promemoria qualche giorno prima. A presto!</p>
+      <p style="color:${inkSoft};font-size:13px;margin:0 0 24px;">Ti invieremo un promemoria qualche giorno prima. A presto!</p>
+      <table cellpadding="0" cellspacing="0" style="width:100%;">
+        <tr>
+          <td style="border-radius:10px;background:${paper};padding:16px 20px;text-align:center;">
+            <p style="color:${inkSoft};font-size:13px;margin:0 0 10px;">📸 Segnati questo link: dopo la festa carica lì le tue foto.</p>
+            <a href="${EVENT.photoDriveUrl}" style="display:inline-block;background:${ink};color:${paperCard};font-size:13px;font-weight:600;text-decoration:none;padding:10px 20px;border-radius:8px;">
+              Apri la cartella foto
+            </a>
+          </td>
+        </tr>
+      </table>
     `
     : `
       <p style="color:${inkSoft};font-size:16px;line-height:1.7;margin:0 0 24px;">

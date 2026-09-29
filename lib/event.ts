@@ -20,6 +20,7 @@ export const EVENT = {
   funImage: "/offre-lui.jpg",
   musicSrc: "/music.mp3",
   resendFrom: "Festa di Vanzoo <noreply@mail.eventogo.it>",
+  photoDriveUrl: "https://drive.google.com/drive/folders/18GFc5e1EZZAbgUheMNcH1ALUOA9MRAid",
 };
 
 export function eventDateLabel() {
