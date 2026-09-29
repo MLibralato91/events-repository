@@ -145,7 +145,8 @@ export default function Home() {
         {/* ── Outfit ── */}
         <TicketCard className="mb-6 p-6 sm:p-8 animate-fade-up" style={{ animationDelay: "0.25s" }}>
           <p className="stub-label text-center mb-2">Dress code</p>
-          <p className="font-serif text-xl text-center">{EVENT.dressCode}</p>
+          <p className="font-serif text-xl text-center mb-3">{EVENT.dressCode}</p>
+          <p className="text-sm text-ink-soft text-center max-w-sm mx-auto">{EVENT.dressCodeNote}</p>
         </TicketCard>
 
         {/* ── Form RSVP ── */}

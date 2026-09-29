@@ -8,11 +8,13 @@ export const EVENT = {
   time: "20:00",
   durationHours: 4, // usato per l'evento esportato nel calendario
   timeZone: "Europe/Rome",
-  venue: "Nome del Locale",
-  address: "Via Esempio 1, Milano",
+  venue: "ARIA Just Breathe",
+  address: "Via Nazario Sauro 14, 04100 Latina",
   deadline: "10 ottobre",
   coverCharge: null as string | null, // es. "€30 a persona" oppure null
-  dressCode: "Smart casual",
+  dressCode: "Fatevi belli ✨",
+  dressCodeNote:
+    "Niente di troppo formale, niente di troppo casual. L'idea è semplice: look da festa, ma comodi abbastanza da godervela fino alla fine.",
   contactEmail: "matteovanzari@yahoo.it",
   heroImage: "/hero.png",
   funImage: "/offre-lui.jpg",
