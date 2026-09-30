@@ -33,7 +33,7 @@ export function buildConfirmHtml(nome: string, partecipa: boolean, accompagnato:
       <table cellpadding="0" cellspacing="0" style="width:100%;">
         <tr>
           <td style="border-radius:10px;background:${paper};padding:16px 20px;text-align:center;">
-            <p style="color:${inkSoft};font-size:13px;margin:0 0 10px;">📸 Segnati questo link: dopo la festa carica lì le tue foto.</p>
+            <p style="color:${inkSoft};font-size:13px;margin:0 0 10px;">📸 Segnati questo link: dopo la festa se ti va carica le tue foto!</p>
             <a href="${EVENT.photoDriveUrl}" style="display:inline-block;background:${ink};color:${paperCard};font-size:13px;font-weight:600;text-decoration:none;padding:10px 20px;border-radius:8px;">
               Carica qui
             </a>
@@ -148,7 +148,7 @@ export function buildReminderHtml(nome: string) {
                   <table cellpadding="0" cellspacing="0" style="width:100%;">
                     <tr>
                       <td style="border-radius:10px;background:${paper};padding:16px 20px;text-align:center;">
-                        <p style="color:${inkSoft};font-size:13px;margin:0 0 10px;">📸 Segnati questo link: dopo la festa carica lì le tue foto.</p>
+                        <p style="color:${inkSoft};font-size:13px;margin:0 0 10px;">📸 Segnati questo link: dopo la festa se ti va carica le tue foto!</p>
                         <a href="${EVENT.photoDriveUrl}" style="display:inline-block;background:${ink};color:${paperCard};font-size:13px;font-weight:600;text-decoration:none;padding:10px 20px;border-radius:8px;">
                           Carica qui
                         </a>
