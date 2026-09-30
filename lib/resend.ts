@@ -35,7 +35,7 @@ export function buildConfirmHtml(nome: string, partecipa: boolean, accompagnato:
           <td style="border-radius:10px;background:${paper};padding:16px 20px;text-align:center;">
             <p style="color:${inkSoft};font-size:13px;margin:0 0 10px;">📸 Segnati questo link: dopo la festa carica lì le tue foto.</p>
             <a href="${EVENT.photoDriveUrl}" style="display:inline-block;background:${ink};color:${paperCard};font-size:13px;font-weight:600;text-decoration:none;padding:10px 20px;border-radius:8px;">
-              Apri la cartella foto
+              Carica qui
             </a>
           </td>
         </tr>
@@ -150,7 +150,7 @@ export function buildReminderHtml(nome: string) {
                       <td style="border-radius:10px;background:${paper};padding:16px 20px;text-align:center;">
                         <p style="color:${inkSoft};font-size:13px;margin:0 0 10px;">📸 Segnati questo link: dopo la festa carica lì le tue foto.</p>
                         <a href="${EVENT.photoDriveUrl}" style="display:inline-block;background:${ink};color:${paperCard};font-size:13px;font-weight:600;text-decoration:none;padding:10px 20px;border-radius:8px;">
-                          Apri la cartella foto
+                          Carica qui
                         </a>
                       </td>
                     </tr>
