@@ -204,7 +204,7 @@ export async function sendConfirmEmail({
 }) {
   const subject = partecipa
     ? `🥂 Ci vediamo alla festa, ${nome}!`
-    : `Risposta ricevuta — ${EVENT.age} anni di ${EVENT.name}`;
+    : `Risposta ricevuta per i ${EVENT.age} anni di ${EVENT.name}`;
 
   await resend.emails.send({
     from: EVENT.from,

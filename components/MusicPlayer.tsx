@@ -48,12 +48,17 @@ export default function MusicPlayer({ src }: { src: string }) {
           </span>
         </button>
       </div>
-      <p className="stub-label font-semibold text-center whitespace-nowrap">
-        {unavailable
-          ? "Musica non disponibile"
-          : playing
-          ? "Questo è solo un assaggio"
-          : "Non sei pronto per l'evento dell'anno"}
+      <p className="stub-label font-semibold text-center sm:whitespace-nowrap">
+        {unavailable ? (
+          "Musica non disponibile"
+        ) : playing ? (
+          "Questo è solo un assaggio"
+        ) : (
+          <>
+            Non sei pronto
+            <br className="sm:hidden" /> per l&apos;evento dell&apos;anno
+          </>
+        )}
       </p>
     </div>
   );
