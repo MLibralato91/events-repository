@@ -135,7 +135,7 @@ export function buildReminderHtml(nome: string) {
               <tr>
                 <td style="padding:28px;">
                   <p style="color:${inkSoft};font-size:16px;line-height:1.7;margin:0 0 24px;">
-                    Manca pochissimo ai <strong style="color:${accent}">${EVENT.age} anni di ${EVENT.name}</strong> — ecco un riepilogo per non farti trovare impreparato.
+                    Manca pochissimo ai <strong style="color:${accent}">${EVENT.age} anni di ${EVENT.name}</strong>, ecco un riepilogo per non farti trovare impreparato.
                   </p>
                   <div style="background:${paper};border-top:2px dashed rgba(27,42,74,0.25);border-bottom:2px dashed rgba(27,42,74,0.25);border-radius:12px;padding:20px;margin-bottom:24px;">
                     <p style="color:${inkSoft};font-size:11px;letter-spacing:0.15em;text-transform:uppercase;margin:0 0 12px;font-weight:600;">Dettagli</p>
