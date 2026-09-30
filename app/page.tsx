@@ -146,13 +146,13 @@ export default function Home() {
         <TicketCard className="mb-6 p-6 sm:p-8 animate-fade-up" style={{ animationDelay: "0.3s" }}>
           <p className="stub-label text-center mb-2">Dress code</p>
           <p className="font-serif text-xl text-center mb-3">{EVENT.dressCode}</p>
-          <p className="text-sm text-ink-soft text-center max-w-sm mx-auto">{EVENT.dressCodeNote}</p>
+          <p className="text-sm text-ink-soft text-center max-w-sm mx-auto [text-wrap:balance]">{EVENT.dressCodeNote}</p>
         </TicketCard>
 
         {/* ── Form RSVP ── */}
         <TicketCard className="p-6 sm:p-8 animate-fade-up" style={{ animationDelay: "0.35s" }}>
           <p className="stub-label text-center mb-1">Conferma la presenza</p>
-          <p className="text-sm text-ink-soft text-center mb-6">
+          <p className="text-sm text-ink-soft text-center mb-6 [text-wrap:balance]">
             Compila il form qui sotto per farci sapere se ci sarai.
           </p>
           <RsvpForm />
