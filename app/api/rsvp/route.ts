@@ -41,26 +41,36 @@ export async function POST(req: NextRequest) {
       note: note ?? null,
     });
 
-    // 2. Email di conferma all'ospite (fire & forget — non blocca la risposta)
-    sendConfirmEmail({
-      nome,
-      cognome,
-      email,
-      partecipa: participaBoolean,
-      accompagnato: accompagnatoBoolean,
-      nome_accompagnatore,
-    }).catch(console.error);
+    // 2. Email di conferma all'ospite + notifica admin — attese prima di
+    // rispondere: su Vercel una promise non awaited può essere interrotta a
+    // metà se la funzione serverless viene congelata subito dopo la risposta,
+    // causando invii falliti in modo silenzioso e intermittente.
+    const [confirmResult, adminResult] = await Promise.allSettled([
+      sendConfirmEmail({
+        nome,
+        cognome,
+        email,
+        partecipa: participaBoolean,
+        accompagnato: accompagnatoBoolean,
+        nome_accompagnatore,
+      }),
+      sendAdminNotification({
+        nome,
+        cognome,
+        email,
+        partecipa: participaBoolean,
+        accompagnato: accompagnatoBoolean,
+        nome_accompagnatore,
+        note,
+      }),
+    ]);
 
-    // 3. Notifica admin
-    sendAdminNotification({
-      nome,
-      cognome,
-      email,
-      partecipa: participaBoolean,
-      accompagnato: accompagnatoBoolean,
-      nome_accompagnatore,
-      note,
-    }).catch(console.error);
+    if (confirmResult.status === "rejected") {
+      console.error("[RSVP] Invio email conferma fallito:", confirmResult.reason);
+    }
+    if (adminResult.status === "rejected") {
+      console.error("[RSVP] Invio notifica admin fallito:", adminResult.reason);
+    }
 
     return NextResponse.json({ success: true });
   } catch (err) {
